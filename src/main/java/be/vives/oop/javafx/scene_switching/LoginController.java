@@ -26,7 +26,11 @@ public class LoginController implements Initializable {
 
         // Need stage to change scenes
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ApplicationScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ApplicationScene.fxml"));
+
+        ApplicationController controller = new ApplicationController(name);   // Pass username to controller
+        loader.setController(controller);
+        Parent root = loader.load();
         Scene appScene = new Scene(root);
 
         stage.hide(); //optional
